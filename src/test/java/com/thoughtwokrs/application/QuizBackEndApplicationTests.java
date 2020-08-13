@@ -1,4 +1,4 @@
-package com.thoughtwokrs.quizbackend;
+package com.thoughtwokrs.application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
