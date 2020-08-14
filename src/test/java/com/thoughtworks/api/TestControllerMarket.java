@@ -1,5 +1,6 @@
 package com.thoughtworks.api;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,11 +14,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class TestControllerTest {
+class TestControllerMarket {
     @Autowired
     MockMvc mockMvc;
 
     @Test
+    @Order(1)
     void addition() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(jsonPath("$", is(2)))
