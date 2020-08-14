@@ -29,8 +29,8 @@ class MarketControllerTest {
     ItemRepository itemRepository;
 
     @BeforeEach
-    public void setUp() {
-
+    void setUp() {
+        itemRepository.deleteAll();
     }
 
     @Test

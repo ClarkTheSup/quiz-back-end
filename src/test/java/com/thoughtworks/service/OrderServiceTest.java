@@ -50,7 +50,8 @@ class OrderServiceTest {
     }
 
     @Test
-    void given_item_then_save() {
-
+    void should_delete_order() {
+        orderService.deleteOrder();
+        verify(orderRepository, times(1)).deleteAll();
     }
 }

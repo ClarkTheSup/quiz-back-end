@@ -7,20 +7,21 @@ import com.thoughtworks.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class OrderService {
     @Autowired
-    OrderRepository orderRespository;
+    OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRespository) {
-        this.orderRespository = orderRespository;
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
     public List<Order> getOrderList() {
-        List<OrderDto> orderDtoList = orderRespository.findAll();
+        List<OrderDto> orderDtoList = orderRepository.findAll();
         List<Order> OrderList = new ArrayList<Order>();
         orderDtoList.stream().forEach(orderDto -> {
             Order order = Order.builder().name(orderDto.getName())
@@ -29,5 +30,15 @@ public class OrderService {
             OrderList.add(order);
         });
         return OrderList;
+    }
+
+    @Transactional
+    public void deleteOrder() {
+        orderRepository.deleteAll();
+    }
+
+    @Transactional
+    public void deleteOrderById(int id) {
+        orderRepository.deleteById(id);
     }
 }
