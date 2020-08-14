@@ -25,7 +25,7 @@ public class OrderController {
 
     @PostMapping("/orderDelete/{id}")
     public ResponseEntity deleteOrder(@PathVariable int id) {
-        orderService.deleteOrder(id);
+        orderService.deleteOrderById(id);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
