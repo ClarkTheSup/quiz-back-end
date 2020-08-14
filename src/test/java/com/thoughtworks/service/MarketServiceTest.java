@@ -1,5 +1,6 @@
 package com.thoughtworks.service;
 
+import com.thoughtworks.domain.Item;
 import com.thoughtworks.dto.ItemDto;
 import com.thoughtworks.repository.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,5 +43,16 @@ class MarketServiceTest {
         //then
         assertEquals(marketService.findAll().size(), 1);
         verify(itemRepository).findAll();
+    }
+
+    @Test
+    void given_item_then_save() {
+        Item item = Item.builder().name("kele").measurement("瓶")
+                .price(2).image_url("../../images/1.jpg").build();
+        ItemDto itemDto = ItemDto.builder().name("kele").measurement("瓶")
+                .price(2).image_url("../../images/1.jpg").build();
+        marketService.saveItem(item);
+
+        verify(itemRepository).save(itemDto);
     }
 }

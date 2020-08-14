@@ -18,6 +18,13 @@ public class MarketService {
     }
 
     public List<Item> findAll() {
+//        ItemDto itemDto1 = ItemDto.builder().id(1).name("kele1").measurement("瓶")
+//                .price(2).image_url("../../images/1.jpg").build();
+//        ItemDto itemDto2 = ItemDto.builder().id(2).name("kele2").measurement("瓶")
+//                .price(4).image_url("../../images/1.jpg").build();
+//        itemRepository.save(itemDto1);
+//        itemRepository.save(itemDto2);
+
         List<ItemDto> itemDtoList = itemRepository.findAll();
         List<Item> itemList = new ArrayList<Item>();
         itemDtoList.stream().forEach(itemDto -> {
@@ -29,5 +36,12 @@ public class MarketService {
             itemList.add(item);
         });
         return itemList;
+    }
+
+    public void saveItem(Item item) {
+        ItemDto itemDto = ItemDto.builder().name(item.getName())
+                            .price(item.getPrice()).measurement(item.getMeasurement())
+                            .image_url(item.getImage_url()).build();
+        itemRepository.save(itemDto);
     }
 }
