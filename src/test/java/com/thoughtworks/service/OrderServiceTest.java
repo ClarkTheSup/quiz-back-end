@@ -32,12 +32,12 @@ class OrderServiceTest {
     @Test
     void when_find_all_then_return_order() {
         //given
-        OrderDto orderDto = OrderDto.builder().name("o1").time("19").build();
+        OrderDto orderDto = OrderDto.builder().order_name("o1").order_time("19").build();
         List<OrderDto> orderDtoList = new ArrayList<OrderDto>();
         orderDtoList.add(orderDto);
         List<Order> orderList = new ArrayList<Order>();
-        Order order = Order.builder().name(orderDto.getName())
-                .time(orderDto.getTime()).build();
+        Order order = Order.builder().name(orderDto.getOrder_name())
+                .time(orderDto.getOrder_time()).build();
         orderList.add(order);
 
         //when
@@ -53,5 +53,12 @@ class OrderServiceTest {
     void should_delete_order() {
         orderService.deleteOrder();
         verify(orderRepository, times(1)).deleteAll();
+    }
+
+    @Test
+    void given_order_dto_then_save() {
+        OrderDto orderDto = OrderDto.builder().order_name("o1").order_time("19").build();
+        orderService.addOrder(orderDto);
+        verify(orderRepository, times(1)).save(orderDto);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="order")
+@Table(name="order_dto")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,8 +18,9 @@ public class OrderDto {
     @Id
     @GeneratedValue
     private int id;
-    private String name;
-    private String time;
+
+    private String order_name;
+    private String order_time;
     private int item_id;
 
     //@OneToMany(mappedBy = "order_dto")
