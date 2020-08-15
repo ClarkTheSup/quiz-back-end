@@ -9,7 +9,4 @@ import java.util.Optional;
 public interface ItemRepository extends CrudRepository<ItemDto, Integer> {
     @Override
     List<ItemDto> findAll();
-
-    @Override
-    Optional<ItemDto> findById(Integer integer);
 }

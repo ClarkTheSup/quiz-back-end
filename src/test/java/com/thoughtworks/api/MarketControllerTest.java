@@ -37,9 +37,9 @@ class MarketControllerTest {
     @Order(1)
     void when_get_market_then_return_all_items() throws Exception {
         ItemDto itemDto1 = ItemDto.builder().id(1).name("kele1").measurement("瓶")
-                .price(2).image_url("../../images/1.jpg").build();
+                .price(2).image("../../images/1.jpg").build();
         ItemDto itemDto2 = ItemDto.builder().id(2).name("kele2").measurement("瓶")
-                .price(4).image_url("../../images/1.jpg").build();
+                .price(4).image("../../images/1.jpg").build();
 
         itemRepository.save(itemDto1);
         itemRepository.save(itemDto2);
@@ -54,7 +54,7 @@ class MarketControllerTest {
     @Order(2)
     void given_item_then_save() throws Exception {
         ItemDto itemDto = ItemDto.builder().name("kele").measurement("瓶")
-                .price(2).image_url("../../images/1.jpg").build();
+                .price(2).image("../../images/1.jpg").build();
         ObjectMapper objectMapper = new ObjectMapper();
         String itemDtoStr = objectMapper.writeValueAsString(itemDto);
         mockMvc.perform(post("/market/item").contentType(MediaType.APPLICATION_JSON)
@@ -64,6 +64,6 @@ class MarketControllerTest {
                 .andExpect(jsonPath("$[0].name", is("kele")))
                 .andExpect(jsonPath("$[0].price", is(2.0)))
                 .andExpect(jsonPath("$[0].measurement", is("瓶")))
-                .andExpect(jsonPath("$[0].image_url", is("../../images/1.jpg")));
+                .andExpect(jsonPath("$[0].image", is("../../images/1.jpg")));
     }
 }

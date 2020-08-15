@@ -24,7 +24,7 @@ public class MarketService {
             Item item = Item.builder().name(itemDto.getName())
                             .price(itemDto.getPrice())
                             .measurement(itemDto.getMeasurement())
-                            .image_url(itemDto.getImage_url())
+                            .image(itemDto.getImage())
                             .build();
             itemList.add(item);
         });
@@ -34,7 +34,7 @@ public class MarketService {
     public void saveItem(Item item) {
         ItemDto itemDto = ItemDto.builder().name(item.getName())
                             .price(item.getPrice()).measurement(item.getMeasurement())
-                            .image_url(item.getImage_url()).build();
+                            .image(item.getImage()).build();
         itemRepository.save(itemDto);
     }
 }

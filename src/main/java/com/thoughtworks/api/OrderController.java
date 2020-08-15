@@ -2,7 +2,10 @@ package com.thoughtworks.api;
 
 import com.thoughtworks.domain.Item;
 import com.thoughtworks.domain.Order;
+import com.thoughtworks.dto.ItemDto;
 import com.thoughtworks.dto.OrderDto;
+import com.thoughtworks.repository.ItemRepository;
+import com.thoughtworks.repository.OrderRepository;
 import com.thoughtworks.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +22,8 @@ public class OrderController {
     @GetMapping("/orders")
     @CrossOrigin(origins = "*", maxAge = 3600)
     public ResponseEntity getOrder() {
-        List<Item> itemList = orderService.getItemList();
-        return ResponseEntity.status(HttpStatus.OK).body(itemList);
+        List<ItemDto> itemDtoList = orderService.getItemDtoList();
+        return ResponseEntity.status(HttpStatus.OK).body(itemDtoList);
     }
 
     @PostMapping("/orderDelete")

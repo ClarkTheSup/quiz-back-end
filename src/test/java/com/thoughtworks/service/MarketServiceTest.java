@@ -32,7 +32,7 @@ class MarketServiceTest {
         //given
         ItemDto itemDto = ItemDto.builder().id(1)
                             .name("kele").measurement("瓶")
-                            .price(2).image_url("../../images/1.jpg")
+                            .price(2).image("../../images/1.jpg")
                             .build();
         List<ItemDto> itemDtoList = new ArrayList<ItemDto>();
         itemDtoList.add(itemDto);
@@ -48,9 +48,9 @@ class MarketServiceTest {
     @Test
     void given_item_then_save() {
         Item item = Item.builder().name("kele").measurement("瓶")
-                .price(2).image_url("../../images/1.jpg").build();
+                .price(2).image("../../images/1.jpg").build();
         ItemDto itemDto = ItemDto.builder().name("kele").measurement("瓶")
-                .price(2).image_url("../../images/1.jpg").build();
+                .price(2).image("../../images/1.jpg").build();
         marketService.saveItem(item);
 
         verify(itemRepository).save(itemDto);

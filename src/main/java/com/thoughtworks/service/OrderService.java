@@ -53,19 +53,16 @@ public class OrderService {
     }
 
     @Transactional
-    public List<Item> getItemList() {
+    public List<ItemDto> getItemDtoList() {
         List<Order> orderList = this.getOrderList();
-        List<Item> itemList = new ArrayList<Item>();
+        List<ItemDto> itemDtoList = new ArrayList<ItemDto>();
         if(orderList.size() == 0) {
-            return itemList;
+            return itemDtoList;
         }
-        orderList.stream().forEach(order -> {
-            ItemDto itemDto = itemRepository.findById(order.getItem_id()).get();
-            Item item = Item.builder().name(itemDto.getName()).price(itemDto.getPrice())
-                    .image_url(itemDto.getImage_url()).measurement(itemDto.getMeasurement())
-                    .build();
-            itemList.add(item);
-        });
-        return itemList;
+        for(Order order : orderList){
+            ItemDto itemDto = itemRepository.findById(order.getItem_id()).orElse(null);
+            itemDtoList.add(itemDto);
+        }
+        return itemDtoList;
     }
 }

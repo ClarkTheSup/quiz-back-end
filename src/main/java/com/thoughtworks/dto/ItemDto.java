@@ -21,5 +21,5 @@ public class ItemDto {
     private String name;
     private double price;
     private String measurement;
-    private String image_url;
+    private String image;
 }
